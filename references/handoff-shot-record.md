@@ -1,29 +1,23 @@
-# Handoff, de archivos del proyecto a un shot record
+# Handoff, from project files to a shot record
 
-No pidas "haz el prompt" en aislamiento. Dale a Claude el registro de producción
-primero, y que devuelva **un** record estructurado por shot.
+Do not ask for "make the prompt" in isolation. Give Claude the production record first, and have it return **one** structured record per shot.
 
-## Los tres tipos de archivo del workflow
-- **`.md`**, texto plano (Markdown). Notas, instrucciones y skills.
-- **Skill (`SKILL.md`)**, carpeta de instrucciones `.md` con las reglas de un
-  tema; Claude la abre cuando la tarea encaja y trabaja a ese estándar. No todo
-  `.md` es un skill; a veces es solo un system prompt.
-- **`.jsx`**, técnicamente código, pero lo usamos como **shotlist**: contenedor
-  estructurado de datos de shot (número, descripción, timing, prompts) del que
-  Claude lee los campos.
+## The three file types in the workflow
+- **`.md`**, plain text (Markdown). Notes, instructions and skills.
+- **Skill (`SKILL.md`)**, a folder of `.md` instructions with the rules for one topic. Claude opens it when the task fits and works to that standard. Not every `.md` is a skill, sometimes it is just a system prompt.
+- **`.jsx`**, technically code, but we use it as a **shotlist**, a structured container of shot data (number, description, timing, prompts) that Claude reads fields from.
 
-## Qué entregar a Claude (autoridad explícita)
-| Input | Aporta |
+## What to give Claude (explicit authority)
+| Input | Provides |
 |---|---|
-| Scene brief `.md` | Beat de historia e intención del shot |
-| Referencias aprobadas + nombres `@` exactos de Elements | Identidad de character, location y prop |
-| `SKILL.md` relevante | Reglas para este tipo de prompt |
-| Shotlist `.jsx` actual | Número de shot, timing y continuidad |
+| Scene brief `.md` | Story beat and intent of the shot |
+| Approved references plus exact `@` Element names | Character, location and prop identity |
+| Relevant `SKILL.md` | Rules for this type of prompt |
+| Current `.jsx` shotlist | Shot number, timing and continuity |
 
-La memoria ayuda a recordar el proyecto, pero **no elige el brief más reciente por
-ti**, dile a Claude cuáles archivos son autoritativos.
+Memory helps recall the project, but it **does not pick the latest brief for you**. Tell Claude which files are authoritative.
 
-## El request (reemplaza lo entre corchetes)
+## The request (replace what is in brackets)
 ```
 Use the scene brief, approved reference images, relevant SKILL.md, and current
 .jsx shotlist in this project.
@@ -40,66 +34,28 @@ prompt: "[one complete, standalone Cinema Studio prompt]"
 }
 ```
 
-## Después del record
-Revisa el record en Claude, guárdalo en el `.jsx` shotlist. Cinema Studio **no**
-ingiere ese archivo entero: abre el proyecto y la carpeta correctos, pega el valor
-`prompt` en el Prompt Box, y selecciona cada entrada de `elements` por el `@`
-picker. Para video, lleva también `duration`. Antes de generar, los tags `@`
-visibles deben calzar con el record exactamente.
+## After the record
+Review the record in Claude and save it in the `.jsx` shotlist. Cinema Studio does **not** ingest that whole file. Open the right project and folder, paste the `prompt` value into the Prompt Box, and select each `elements` entry through the `@` picker. For video, carry `duration` too. Before generating, the visible `@` tags must match the record exactly.
 
 ---
 
-# Método de prompt (fallback si Leera no está)
+# Prompt method (fallback if Leera is not available)
 
-Cuando el skill `leera` está disponible, **delega en él** para prompts de
-ubicación (corre el método 4-D con su decision log). Este resumen es el fallback.
+When the `leera` skill is available, **delegate to it** for location prompts (it runs the 4-D method with its decision log). This summary is the fallback.
 
-## Seis decisiones, luego un prompt
-No hay fórmula universal de oración. Hay un pase de decisiones fiable: separa
-**subject, action, setting, light, camera/motion, constraints**, y ensambla las
-seis respuestas en un párrafo. Un pensamiento crudo insinúa un slot sin
-resolverlo ("hot summer day" no dice nada sobre dirección de luz ni forma de
-sombra). El párrafo final no es mejor por ser más largo: cada cláusula tiene un
-trabajo. Si Claude agrega un prop/estilo/clima/movimiento no elegido, pregunta
-qué ambigüedad resuelve, luego apruébalo, reemplázalo o quítalo.
+## Six decisions, then one prompt
+There is no universal sentence formula. There is one reliable pass of decisions. Separate **subject, action, setting, light, camera/motion, constraints**, and assemble the six answers into one paragraph. A raw thought hints at a slot without resolving it ("hot summer day" says nothing about light direction or shadow shape). The final paragraph is not better for being longer, every clause has a job. If Claude adds a prop, style, weather or motion you did not choose, ask what ambiguity it resolves, then approve it, replace it or remove it.
 
-## El método 4-D de Leera (resumen)
-1. **DECONSTRUCT**, cita las palabras útiles del brief y mapéalas a los seis
-   slots (+ camera motion si el target es video). Marca cada slot como explícito,
-   implícito o faltante.
-2. **DIAGNOSE**, audita gaps y ambigüedad. Chequea lógica: un solo sol, puertas y
-   ventanas creíbles, sombras que caen lejos de la fuente declarada. Por cada gap,
-   pregunta o etiqueta el default propuesto. Nunca agregues clima/props/estilo/
-   movimiento en silencio.
-3. **DEVELOP**, construye desde decisiones aprobadas: un subject y action
-   claros, el setting alrededor, un **objeto ancla nombrado** (sofá, umbral,
-   banner) para colocar al character después, luz explícita (fuentes suaves en
-   interiores, rayos duros visibles suelen slopear), paleta tonal con falloff
-   suave sin sombras aplastadas, y ángulo de cámara (default 3/4 para profundidad
-   si no das ángulo). Movimiento solo para video. Sustantivos concretos sobre
-   palabras de calidad ("weathered wood siding", nunca "beautiful").
-4. **DELIVER**, el prompt optimizado como un párrafo en inglés, luego un decision
-   log: por cada detalle agregado o reescrito, nombra la ambigüedad o falla que
-   resuelve.
+## Leera's 4-D method (summary)
+1. **DECONSTRUCT**, quote the useful words from the brief and map them to the six slots (plus camera motion if the target is video). Mark each slot as explicit, implicit or missing.
+2. **DIAGNOSE**, audit gaps and ambiguity. Check logic, a single sun, believable doors and windows, shadows falling away from the declared source. For each gap, ask or label the proposed default. Never silently add weather, props, style or motion.
+3. **DEVELOP**, build from approved decisions. A clear subject and action, the setting around them, a **named anchor object** (sofa, threshold, banner) to place the character later, explicit light (soft sources in interiors, hard visible rays tend toward slop), a tonal palette with soft falloff and no crushed shadows, and a camera angle (default 3/4 for depth if you give none). Motion only for video. Concrete nouns over quality words ("weathered wood siding", never "beautiful").
+4. **DELIVER**, the optimized prompt as one paragraph in English, then a decision log. For every added or rewritten detail, name the ambiguity or failure it resolves.
 
-**Modos:** DETAIL (default para location nueva), 2-3 preguntas antes de
-optimizar, luego pase profundo. BASIC (fix rápido), sin preguntas, mínimos
-defaults claramente etiquetados, entrega ya.
-**Iteración:** cuando respondas con cambios ("mueve la casa al tercio derecho, sol
-fuera de frame, atardecer"), reescribe el prompt **completo** con el cambio
-aplicado, nunca un diff ni un fragmento.
+**Modes.** DETAIL (default for a new location) asks 2-3 questions before optimizing, then does a deep pass. BASIC (quick fix) asks nothing, uses clearly labeled minimal defaults, and delivers now.
+**Iteration.** When you reply with changes ("move the house to the right third, sun out of frame, sunset"), rewrite the **full** prompt with the change applied, never a diff or a fragment.
 
-## Reglas que mantienen creíble una location
-- **3/4 + test de reverse:** un 3/4 expone geometría lateral y separa fore/mid/
-  background (da cues de piso y distancia para colocar al character). El reverse
-  es una generación aparte y un test de continuidad: mantén ancla, aperturas, lado
-  de luz, materiales y paleta bloqueados, y compara los dos frames antes de
-  llamarlos la misma location. De frente, la location se aplana en backdrop y la
-  geometría oculta queda libre para inventar puertas/paredes.
-- **Ancla de blocking:** un objeto claro al que atas el blocking. Cambia "el
-  personaje está a la izquierda" por "el personaje está entre el brazo del sofá
-  del lado del pasillo y la ventana". La relación es testeable en un frame
-  posterior; la dirección vaga no.
-- **Cinco locks a preservar en el reverse:** ancla, aperturas (puertas/ventanas),
-  lado de la luz, materiales, paleta. Si un lock desaparece del decision log,
-  restáuralo antes de generar.
+## Rules that keep a location believable
+- **3/4 plus reverse test.** A 3/4 exposes side geometry and separates fore, mid and background (it gives floor and distance cues for placing the character). The reverse is a separate generation and a continuity test. Keep anchor, openings, light side, materials and palette locked, and compare the two frames before calling them the same location. Shot head-on, the location flattens into a backdrop and hidden geometry is free to invent doors and walls.
+- **Blocking anchor.** One clear object you tie the blocking to. Change "the character is on the left" to "the character is between the sofa arm on the hallway side and the window". The relationship is testable in a later frame, vague direction is not.
+- **Five locks to preserve in the reverse.** Anchor, openings (doors and windows), light side, materials, palette. If a lock disappears from the decision log, restore it before generating.

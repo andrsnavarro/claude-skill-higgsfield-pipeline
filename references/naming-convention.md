@@ -1,34 +1,22 @@
-# Naming, direcciones de Element
+# Naming, Element addresses
 
-Un asset aprobado solo paga si lo puedes recuperar después. Un patrón fijo le da
-a Claude la dirección exacta para cargar en un shot record, y a ti un nombre
-predecible para seleccionar con el `@` picker de Cinema Studio.
+An approved asset only pays off if you can retrieve it later. A fixed pattern gives Claude the exact address to load into a shot record, and gives you a predictable name to select with Cinema Studio's `@` picker.
 
-## Qué es un asset
-Cualquier pieza aprobada que reusarás entre planos: una location plate, un
-character sheet, un prop. Subir su archivo desde la carpeta del proyecto
-Claude crea el **Element** reusable en Higgsfield. El archivo local y el Element
-son cosas distintas: un prompt posterior llama al Element por su nombre `@`
-guardado.
+## What an asset is
+Any approved piece you will reuse across shots, such as a location plate, a character sheet or a prop. Uploading its file from the project folder creates the reusable **Element** in Higgsfield. The local file and the Element are different things, and a later prompt calls the Element by its saved `@` name.
 
-## El patrón
-`@<tipo>_<proyecto>_<descripción>`
+## The pattern
+`@<type>_<project>_<description>`
 
-| Prefijo | Nombra | Ejemplo |
+| Prefix | Names | Example |
 |---|---|---|
 | `@loc_` | Locations | `@loc_XX_house_front` |
 | `@char_` | Characters | `@char_XX_hero` |
 | `@prop_` | Props | `@prop_XX_phone` |
 
-- El tag del medio es el **código de proyecto** (aquí `XX` es un ejemplo).
-  **Acuerda tu código corto al kickoff** para que los nombres no colisionen entre
-  films.
-- La descripción va en `snake_case`: une palabras con guion bajo
-  (`house_front`), nunca espacios ni guiones.
-- La dirección final incluye `@`. Cinema Studio lo agrega al crear el Element;
-  usa la dirección completa al referirte o seleccionar el Element después.
+- The middle tag is the **project code** (`XX` here is an example). **Agree your short code at kickoff** so names do not collide between films.
+- The description uses `snake_case`, joining words with underscores (`house_front`), never spaces or hyphens.
+- The final address includes the `@`. Cinema Studio adds it when creating the Element. Use the full address when referring to or selecting the Element later.
 
-## Por qué importa
-Sin el estándar, Claude puede referenciar el asset equivocado mientras tú buscas
-a mano en el Elements picker o re-adjuntas media. Los segmentos de tipo y
-proyecto hacen la recuperación confiable.
+## Why it matters
+Without the standard, Claude may reference the wrong asset while you search by hand in the Elements picker or re-attach media. The type and project segments make retrieval reliable.

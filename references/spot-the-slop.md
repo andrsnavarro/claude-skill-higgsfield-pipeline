@@ -1,38 +1,19 @@
 # Spot the slop
 
-El slop se esconde en stills y se multiplica en movimiento. Inspecciona el crop
-exacto que vas a usar, nombra el defecto visible, y recién ahí decide si pasa a
-Seedance. **Un defecto visible en el still ya es un stop.**
+Slop hides in stills and multiplies in motion. Inspect the exact crop you will use, name the visible defect, and only then decide if it moves on to Seedance. **A visible defect in the still is already a stop.**
 
-## Los cuatro tells universales
-1. **Objetos rotos-pero-plausibles:** cajas, barandas, hardware que casi puedes
-   leer, en movimiento se vuelven mush y se multiplican.
-2. **Quiebres de lógica local:** un efecto en solo parte del frame (lluvia que
-   raya una esquina). La lógica de Seedance se rompe con él.
-3. **Texturas aceitosas (oily/soapy):** superficies jabonosas pierden el material;
-   los reflejos reptan en movimiento → la plate no sostiene continuidad.
-4. **Sin profundidad / sin haze:** todo con la misma nitidez, sin separación de
-   planos → plano y leído como slop al instante.
+## The four universal tells
+1. **Broken-but-plausible objects.** Boxes, railings, hardware you can almost read. In motion they turn to mush and multiply.
+2. **Local logic breaks.** An effect in only part of the frame (rain that streaks one corner). Seedance's logic breaks on it.
+3. **Oily or soapy textures.** Soapy surfaces lose the material, and reflections crawl in motion, so the plate cannot hold continuity.
+4. **No depth, no haze.** Everything at the same sharpness with no plane separation, which is flat and reads as slop instantly.
 
-Usa Seedance solo cuando el crop pasa el scan en still y necesitas movimiento para
-confirmar un borde, reflejo u objeto incierto.
+Use Seedance only when the crop passes the still scan and you need motion to confirm an uncertain edge, reflection or object.
 
-## Firmas por modelo
-**Banana slop (Nano Banana Pro):** simetría de regla, todo paralelo y a escuadra;
-luz y color planos, sin juego de contraste → bonito pero staged, stock-photo, sin
-vida. Texturas detalladas pero que leen como render 3D, no foto. Hiperboliza cada
-edit: pides graffiti en una pared y taggea toda la location; pides "más vivo y
-cinemático" y te lo toma literal, ensuciando el frame con junk y mugre.
+## Signatures by model
+**Banana slop (Nano Banana Pro).** Ruler symmetry, everything parallel and squared. Flat light and color with no contrast play, so it is pretty but staged, stock-photo and lifeless. Detailed textures that read as a 3D render, not a photo. It exaggerates every edit. You ask for graffiti on a wall and it tags the whole location. You ask for "more alive and cinematic" and it takes it literally, dirtying the frame with junk and grime.
 
-**GPT slop (GPT Image 2):** sharpness y microcontraste al techo, halos duros en
-cada borde. Sin profundidad: todo en foco, sin bokeh, sin separación de planos.
-Balance de blancos jalado cálido hasta amarillear; materiales plásticos y
-licked-smooth; rango dinámico exprimido al medio → sombras y altas se encuentran a
-mitad y el frame queda limp. Tell más delator: una **única textura enfermiza**
-(patrón tipo film-wrap) sobre todo el frame, el mismo patrón en gabinetes y en
-carrocerías por igual.
+**GPT slop (GPT Image 2).** Sharpness and microcontrast through the roof, with hard halos on every edge. No depth, everything in focus, no bokeh, no plane separation. White balance pulled warm until it yellows, plastic and licked-smooth materials, and dynamic range squeezed to the middle so shadows and highlights meet halfway and the frame goes limp. The most telling sign is a **single sickly texture** (film-wrap style pattern) across the whole frame, the same pattern on cabinets and car bodies alike.
 
-## Calibra el ojo
-Mira frames buenos hasta que el ojo corra los tells solo: superficies que leen
-como material bajo una luz coherente, planos separados por haze, tonalidad con
-falloff suave. Nombra el defecto, no solo lo sientas.
+## Calibrate the eye
+Look at good frames until the eye runs the tells by itself. Surfaces that read as material under coherent light, planes separated by haze, tonality with soft falloff. Name the defect, don't just feel it.
